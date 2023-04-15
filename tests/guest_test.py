@@ -39,8 +39,11 @@ class TestGuest(unittest.TestCase):
         self.assertEqual(20,self.guest.money)
 
     def test_get_guest_total_spend(self):
-        total=self.guest.total_spend('Burger',self.room1)
+        total=self.guest.total_spend('Burger',1,self.room1,self.menu1)
+        total2=self.guest.total_spend('Fries',1,self.room1,self.menu1)
         self.assertEqual(40,total)
+        self.assertEqual(35,total2)
+
 
 
 
