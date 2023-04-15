@@ -6,29 +6,71 @@ from src.menu import Menu
 
 class TestRoom(unittest.TestCase):
 
-  def setUp(self):
-    self.room1=Room(1,30,4)
-    self.room2=Room(1,40,8)
+    def setUp(self):
+      self.room1=Room(1,30,4)
+      self.room2=Room(1,40,8)
 
-    self.guest1=Guest('Milo',50,22)
-    self.guest2=Guest('Ken',10,30)
+      self.guest1=Guest('Milo',50,22)
+      self.guest2=Guest('Ken',10,30)
 
-    self.song1=Song("Lover", "Taylor Swift")
-    self.song2=Song('Snow','White')
+      self.song1=Song("Lover", "Taylor Swift")
+      self.song2=Song('Snow','White')
 
-    self.menu1={'Nachos':5,
-    "fries":4
+      self.menu1={
+        'Nachos':5,
+        "fries":4,
+         'cola':3,
+           'gin':4
     } 
 
-  def test_room_has_number_fee_capacity(self):
+    def test_room_has_number_fee_capacity(self):
      self.assertEqual(1,self.room1.room_num)
      self.assertEqual(30,self.room1.fee)  
      self.assertEqual(4,self.room1.capacity)  
     
+# guest check-in->
+# room capaciy decrease, guest name into list,guest money reduce
+    def test_room_capacity_decrese(self):
+      self.guest_check_in(self.guest1,self.room1)
+      self.assertEqual(3,self.room1.capacity)
+      self.assertEqual(20,self.guest1.money)
+      #add: room.guest count +1
+
+#guest check out->
+#room capacity increase
+#guest money decrease by (menu comsume+room fee)
+
+    def test_guest_check_out(self):
 
 
-# def test_room_has_space(self):
-#     #capacity>0
+
+
+
+
+    # def test_room_full(self):#capacity minus one
+    #  self.room1.guest_check_in
+
+    #  self.room1.guest_check_in(self.guest1)
+    #  self.assertEqual(3,self.room1.capacity)
+  
+
+
+
+
+  #  def guest_age_above_21(self):
+  #  def guest_can_afford_fee(self):
+  #  def test_guest_can_check_in(self):
+
+
+
+
+
+
+
+  #  def test_room_has_no_space(self):
+  #   room_no_space=Room(1,30,4)
+
+    #capacity>0
 
 # def test_room_has_no_space(self):
 #     #room capacity<=0
@@ -71,3 +113,6 @@ class TestRoom(unittest.TestCase):
 
 
 
+# find song by name 
+# add song
+# remove song

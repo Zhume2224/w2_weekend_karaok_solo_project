@@ -11,6 +11,7 @@ class TestGuest(unittest.TestCase):
 
     def setUp(self):
        self.guest=Guest('Lucy',50,21)
+       self.room1=Room(1,30,4)
        
        self.menu1 = Menu()
        self.menu1.add_item('Burger', 10)
@@ -29,13 +30,18 @@ class TestGuest(unittest.TestCase):
 
 #note:method2: pass in money directly
     def test_guest_money_decrease_order_food_from_menu(self):  
-        self.guest.order_food(self.menu1,'Burger')
+        self.guest.order_food('Burger')
         self.assertEqual(40,self.guest.money)
 
     def test_guest_money_decrease_pay_room_fee(self):
         room1=Room(1,30,4)
         self.guest.pay_room_fee(room1)
         self.assertEqual(20,self.guest.money)
+
+    def test_get_guest_total_spend(self):
+        total=self.guest.total_spend('Burger',self.room1)
+        self.assertEqual(40,total)
+
 
 
 
