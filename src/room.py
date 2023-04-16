@@ -42,6 +42,12 @@ class Room:
           final_spend=guest.total_spend(food, quantity, room, menu)
           return final_spend
 
+#notebug: is it necessary to specify which room?because i think different rooms will have different playlist.
+    def increase_playlist(self,song,room):
+        if song not in room.playlist:
+           room.playlist.append(song)
+        else:
+            return 'Whoo, good choice!'
         
 
 

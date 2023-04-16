@@ -7,7 +7,8 @@ from src.menu import Menu
 class TestRoom(unittest.TestCase):
 
     def setUp(self):
-      self.room1=Room(1,30,4)
+      self.room1=Room(1,30,5)
+      self.room1.playlist=[self.song1,self.song2,self.song3]
       self.room2=Room(1,40,8)
 
       self.guest1=Guest('Milo',60,22)
@@ -20,15 +21,14 @@ class TestRoom(unittest.TestCase):
       self.menu_dict1=Menu()
       self.menu_dict1.add_item("Nachos", 5)
       self.menu_dict1.add_item("Fries",4)
-      self.menu_dict1.add_item("Cola",4)
-      self.menu_dict1.add_item("Gin",6)
+   
 
 
     def test_room_has_number_fee_capacity_playlist(self):
      self.assertEqual(1,self.room1.room_num)
      self.assertEqual(30,self.room1.fee)  
      self.assertEqual(4,self.room1.capacity)  
-     self.assertEqual({},self.room1.playlist)  
+     self.assertEqual([],self.room1.playlist)  
   
 
    
@@ -80,68 +80,10 @@ class TestRoom(unittest.TestCase):
 
 
 #add songs to playlist
+#-->playlist increase
+#-->shout out fav-song
 
     def test_add_songs_to_playlist(self):
-
-      self.song1=Song("Lover", "TS")
-      self.song2=Song('Snow','White')
-      self.song3=Song('Chocolate','1975')
-
       self.room1.increase_playlist(self.song1,self.room1)
-      self.assertEqual(1,len(self.room1.playlist))
-
-
-
-      #   guest4=Guest()
-      #   guest4.fav_song=self.song1
-      #   self.room1.playlist=['lover-TS','Chocolate-1975',]
-      #   self.room1.playlist.shout_out(guest4,self.room1):
-
-      # # 
-
-
-      # def test_shout_out_fav_song(self):
-      #    shout_out_fav_song()
-    
-
-
-
-
-
-
-
-# def test_guest_money_can_decrease(self):
-#     #guest.money-=fee
-#     #guest.money-=menu.price
-
-# def test_guest_can_check_out(self):
-#     #after money_can_decrease():
-#     #guest.money>=0
-    
-
-# def test_room_capacity_can_increase(self):
-#     #provided guest checks out
-#     #capacity+=1
-
-# def test_room_capacity_can_decrease(self):
-#     #provided guest checks in
-#     #capacity-=1
-
-# def test_playlist_can_increase(self):
-#     #playlist.append.songs 
-
-# def test_shoutout_guest_fav_song(self):
-#     #person a makes list
-#     #person b pass in the fav_song
-#     #if song is in, shoutout
-#     #if sone is notin, add in
-
-# def test_guest_cannot_sing_song(self):
-#     # song is not on the list 
-#     #return add the song first
-
-
-
-# find song by name 
-# add song
-# remove song
+      self.assertEqual(3,len(self.room1.playlist))
+      self.assertEqual('Whoo, good choice!',self.room1.increase_playlist(self.song1,self.room1))
