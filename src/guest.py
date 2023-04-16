@@ -24,15 +24,15 @@ class Guest:
     def pay_room_fee(self,room):
         self.money-=room.fee
 
-    def total_spend(self,food,room):
-        total=0
-        menu={'Burger':10,
-        'Fries':4}
-        if food in menu:
-            total+=(menu[food]+room.fee)
-            return total
-        else:
-            return False
+    # def total_spend(self,food,room):
+    #     total=0
+    #     menu={'Burger':10,
+    #     'Fries':4}
+    #     if food in menu:
+    #         total+=(menu[food]+room.fee)
+    #         return total
+    #     else:
+    #         return False
 
 #note: before fixed, 
     # def total_spend(self, food, quantity,room):
@@ -45,12 +45,13 @@ class Guest:
 
 #note:trying to fix:
     def total_spend(self, food, quantity, room, menu):
+      self.total=0
       if food in menu.menu_dict:
-          total = menu.menu_dict[food] * quantity + room.fee
-          return total
+          self.total += menu.menu_dict [food] * quantity + room.fee
+          return self.total
       else:
-          total = room.fee
-          return total
+          self.total = room.fee
+          return self.total
 
 
 

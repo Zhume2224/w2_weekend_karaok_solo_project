@@ -3,7 +3,7 @@ class Room:
         self.room_num = room_num
         self.fee = fee
         self.capacity=capacity
-        self.playlist={}
+        self.playlist=[]
         self.guests=[]
 
 
@@ -22,7 +22,9 @@ class Room:
       if self.can_check_in(guest,room):
        self.guests.append(guest)
        self.capacity-=1
-       guest.money-=room.fee
+ #notebug: append guest1 and guest2 to guests=[] or guests={} . which is better and how to get name, money and age from it??
+#  guest1=Guest('Milo',70,22)
+# guest2=Guest('Julie',50,28)
 
 
     def can_check_out(self,guest,room,food,quantity,menu):
@@ -36,13 +38,9 @@ class Room:
     def guest_check_out(self,guest,room,food,quantity,menu):
         if self.can_check_out(guest,room,food,quantity,menu):
           self.capacity+=1
-          guest.money-=guest.total_spend(food, quantity, room, menu)
-        return guest.money
-#notebug: why do i always have to return guest.money? 
-# why is  "guest.money-=guest.total_spend(food, quantity, room, menu)" not enough. i have to store it.
-#but self.capacity works 
-# i think it is updated and i can directly get the updated guest.money in the test file 
-
+          self.guests.remove(guest)
+          final_spend=guest.total_spend(food, quantity, room, menu)
+          return final_spend
 
         
 
